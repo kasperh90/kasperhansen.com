@@ -14,6 +14,8 @@ class HomeController extends AbstractController
     #[Route(path: '/')]
     public function index () : never {
 
+        echo 'INFO';
+
         phpinfo();
 
         exit;
