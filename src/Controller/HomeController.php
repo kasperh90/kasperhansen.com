@@ -12,13 +12,9 @@ class HomeController extends AbstractController
 {
 
     #[Route(path: '/')]
-    public function index () : never {
+    public function index () : Response {
 
-        echo 'INFO: ';
-
-        phpinfo();
-
-        exit;
+       return $this->json('Hello, world');
 
     }
 
