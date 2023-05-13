@@ -14,10 +14,7 @@ class HomeController extends AbstractController
     #[Route(path: '/', name: 'home', host: '%app.base_host%', methods: ['GET'])]
     public function index () : Response {
 
-        $response = new Response();
-        $response->setStatusCode(Response::HTTP_OK);
-
-        return $response;
+        return $this->render('www/home/index.html.twig');
 
     }
 

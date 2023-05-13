@@ -14,6 +14,7 @@ class HomeControllerTest extends WebTestCase
 
     private string $controllerName;
     private string $controllerFile;
+    private string $controllerTemplateFile;
     private string $controllerClass;
 
     public function setUp(): void
@@ -21,6 +22,7 @@ class HomeControllerTest extends WebTestCase
 
         $this->controllerName = 'HomeController';
         $this->controllerFile = __DIR__ . "/../../../src/Controller/Www/{$this->controllerName}.php";
+        $this->controllerTemplateFile = __DIR__. "/../../../templates/www/home/index.html.twig";
         $this->controllerClass = HomeController::class;
 
     }
@@ -30,6 +32,14 @@ class HomeControllerTest extends WebTestCase
 
         $message = "{$this->controllerName} does not exist";
         $this->assertFileExists($this->controllerFile, $message);
+
+    }
+
+    public function testIfTemplateExists(): void
+    {
+
+        $message = "{$this->controllerTemplateFile} does not exist";
+        $this->assertFileExists($this->controllerTemplateFile, $message);
 
     }
 
