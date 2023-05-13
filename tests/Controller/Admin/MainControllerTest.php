@@ -58,7 +58,7 @@ class MainControllerTest extends WebTestCase
         $client->request(
             method: 'GET',
             uri: '/',
-            server: ['HTTP_HOST' => 'www.' . $_ENV['BASE_HOST']]
+            server: ['HTTP_HOST' => 'admin.' . $_ENV['BASE_HOST']]
         );
 
         $message = "Index did not return OK";
