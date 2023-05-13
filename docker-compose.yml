@@ -25,6 +25,7 @@ services:
         volumes:
             - ./less:/var/www/less
             - ./public/assets:/var/www/public/assets
+            - ./templates/assets:/var/www/templates/assets
         working_dir: /var/www
 
 volumes:

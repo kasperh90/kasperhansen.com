@@ -12,7 +12,7 @@ module.exports = (env, argv) => {
             bundle: path.resolve(__dirname, 'less/index.js')
         },
         output: {
-           path: path.resolve(__dirname, 'public/assets'),
+            path: path.resolve(__dirname, 'public/assets'),
             filename: argv.mode === 'production' ? '[name].[contenthash].js' : '[name].js',
             publicPath: "assets",
             clean: true,
@@ -61,7 +61,7 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new HtmlWebpackPlugin({
-                filename: "index.html",
+                filename : '../../templates/assets/bundle.html',
                 template: 'less/index.html',
                 inject: false,
             }),
