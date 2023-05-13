@@ -20,3 +20,6 @@
 ###< symfony/phpunit-bridge ###
 
 .idea
+public/assets
+.DS_Store
+templates/assets
