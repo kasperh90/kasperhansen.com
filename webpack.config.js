@@ -12,7 +12,7 @@ module.exports = (env, argv) => {
             bundle: path.resolve(__dirname, 'less/index.js')
         },
         output: {
-            path: path.resolve(__dirname, 'public'),
+            path: path.resolve(__dirname, 'public/assets'),
             filename: argv.mode === 'production' ? './[name].[contenthash].js' : './[name].js',
             clean: true,
         },

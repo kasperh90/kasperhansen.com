@@ -24,7 +24,7 @@ services:
         restart: unless-stopped
         volumes:
             - ./less:/var/www/less
-            - ./public:/var/www/public
+            - ./public/assets:/var/www/public/assets
         working_dir: /var/www
 
 volumes:
