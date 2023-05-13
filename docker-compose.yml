@@ -18,9 +18,12 @@ services:
     webpack:
         build:
             context: dockerfiles/node
+        command: npx webpack build --mode development --watch --progress
         container_name: kasperhansen-webpack
         restart: unless-stopped
-        working_dir: /var/ww
+        volumes:
+            - ./less:/var/www/less
+        working_dir: /var/www
 
 volumes:
     ###> doctrine/doctrine-bundle ###

@@ -2,9 +2,8 @@
     "name": "kasperhansen.com",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "../../less/index.js",
     "scripts": {
-        "watch": "webpack --mode development --progress --watch",
         "build": "webpack --mode production --progress"
     },
     "author": "",
