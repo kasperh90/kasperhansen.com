@@ -12,8 +12,9 @@ module.exports = (env, argv) => {
             bundle: path.resolve(__dirname, 'less/index.js')
         },
         output: {
-            path: path.resolve(__dirname, 'public/assets'),
-            filename: argv.mode === 'production' ? './[name].[contenthash].js' : './[name].js',
+           path: path.resolve(__dirname, 'public/assets'),
+            filename: argv.mode === 'production' ? '[name].[contenthash].js' : '[name].js',
+            publicPath: "assets",
             clean: true,
         },
         devtool: 'source-map',
@@ -65,7 +66,7 @@ module.exports = (env, argv) => {
                 inject: false,
             }),
             new MiniCssExtractPlugin({
-                filename: argv.mode === 'production' ? './[name].[contenthash].css' : './[name].css',
+                filename: argv.mode === 'production' ? '[name].[contenthash].css' : '[name].css',
             })
         ],
         optimization: {
