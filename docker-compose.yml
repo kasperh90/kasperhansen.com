@@ -17,12 +17,14 @@ services:
 
     webpack:
         build:
-            context: dockerfiles/node
+            context: ./
+            dockerfile: node.Dockerfile
         command: npx webpack build --mode development --watch --progress
         container_name: kasperhansen-webpack
         restart: unless-stopped
         volumes:
             - ./less:/var/www/less
+            - ./public:/var/www/public
         working_dir: /var/www
 
 volumes:

@@ -61,7 +61,7 @@ module.exports = (env, argv) => {
         plugins: [
             new HtmlWebpackPlugin({
                 filename: "index.html",
-                template: "templates/bundle.html"
+                template: "less/template.html"
             }),
             new MiniCssExtractPlugin({
                 filename: argv.mode === 'production' ? './[name].[contenthash].css' : './[name].css',
