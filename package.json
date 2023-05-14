@@ -4,6 +4,9 @@
     "description": "",
     "main": "less/index.js",
     "author": "Kasper Hansen",
+    "scripts": {
+        "build" : "webpack --mode production --progress"
+    },
     "license": "UNLICENSED",
     "devDependencies": {
         "@babel/core": "^7.21.8",
