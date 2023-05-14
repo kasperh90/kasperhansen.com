@@ -1,5 +1,9 @@
 <% htmlWebpackPlugin.files.css.forEach(function(file) { %>
-<link rel="stylesheet" href="<%= file %>">
+<link
+    rel="preload"
+    as="style"
+    onload="this.rel = 'stylesheet'"
+    href="<%= file %>">
 <% }); %>
 <% htmlWebpackPlugin.files.js.forEach(function(file) { %>
 <script src="<%= file %>"></script>
