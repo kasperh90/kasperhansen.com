@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>{% block title %}kasperhansen.com{% endblock %}</title>
 
-        {{ source('assets/bundle.html', ignore_missing = true) }}
+        {% include 'assets/bundle.html' ignore missing %}
     </head>
     <body>
         {% block body %}{% endblock %}
