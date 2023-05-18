@@ -21,8 +21,7 @@ class UserTest extends TestCase
         array  $roles,
         int    $numberOfRoles): void
     {
-        $user = new User();
-        $user->setEmail($email);
+        $user = new User($email);
         $user->setPassword($password);
         $user->setRoles($roles);
 
