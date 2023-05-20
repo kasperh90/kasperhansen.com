@@ -11,7 +11,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class MainController extends AbstractController
 {
 
-    #[Route(path: '/', name: 'admin_main', host: 'admin.%app.base_host%', methods: ['GET', 'POST'])]
+    #[Route('/',
+        name: 'admin_main',
+        host: 'admin.%app.base_host%',
+        methods: ['GET'])]
     public function index () : Response {
 
         $response = new Response();

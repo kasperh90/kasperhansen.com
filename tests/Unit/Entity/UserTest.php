@@ -11,7 +11,6 @@ use Monolog\Test\TestCase;
 class UserTest extends TestCase
 {
 
-
     /**
      * @dataProvider userDataProvider
      */
@@ -21,7 +20,8 @@ class UserTest extends TestCase
         array  $roles,
         int    $numberOfRoles): void
     {
-        $user = new User($email);
+        $user = new User();
+        $user->setEmail($email);
         $user->setPassword($password);
         $user->setRoles($roles);
 

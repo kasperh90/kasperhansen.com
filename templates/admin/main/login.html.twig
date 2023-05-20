@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Login {% endblock %}
+
+{% block body %}
+
+    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+    {%  if error  %}
+        {{ error.messageKey }}
+    {% endif %}
+
+{% endblock %}

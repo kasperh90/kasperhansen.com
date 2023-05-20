@@ -33,8 +33,7 @@ class CreateUserCommand extends Command
     {
         $this
             ->addArgument('email', InputArgument::REQUIRED, 'E-mail')
-            ->addArgument('password', InputArgument::REQUIRED, 'password')
-            ->setHelp('This help you creating af user');
+            ->addArgument('password', InputArgument::REQUIRED, 'password');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
@@ -45,6 +44,7 @@ class CreateUserCommand extends Command
         $plaintextPassword = $input->getArgument('password');
 
         $user = new User($email);
+        $user->setEmail($email);
 
         $hashedPassword = $this->userPasswordHasher->hashPassword(
             $user,
