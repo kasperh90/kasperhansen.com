@@ -6,8 +6,12 @@
 
     {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
-    {%  if error  %}
+    {% if error %}
         {{ error.messageKey }}
+    {% endif %}
+
+    {% if app.user %}
+        You are logged in
     {% endif %}
 
 {% endblock %}

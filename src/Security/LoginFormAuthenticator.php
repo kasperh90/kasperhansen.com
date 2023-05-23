@@ -61,7 +61,7 @@ class LoginFormAuthenticator extends AbstractAuthenticator
 
         return new Passport(
             $userBadge,
-            new PasswordCredentials($user->getPlainPassword())
+            new PasswordCredentials($user->getPlainPassword()),
         );
     }
 
