@@ -15,6 +15,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
@@ -59,9 +60,19 @@ class LoginFormAuthenticator extends AbstractAuthenticator
             }
         );
 
+        $csrfToken = $request->get('login_user')['_token'];
+
+        $request->getSession()->set(Security::LAST_USERNAME, $user->getEmail());
+
         return new Passport(
             $userBadge,
             new PasswordCredentials($user->getPlainPassword()),
+            [
+                new CsrfTokenBadge(
+                    'authenticate',
+                    $csrfToken
+                )
+            ]
         );
     }
 

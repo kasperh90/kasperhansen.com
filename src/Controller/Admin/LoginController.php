@@ -24,9 +24,13 @@ class LoginController extends AbstractController
         $user = new User();
         $form = $this->createForm(LoginUserType::class, $user);
 
+        if($email = $authenticationUtils->getLastUsername()){
+            $form->get('email')->setData($email);
+        }
+
         return $this->render('admin/main/login.html.twig', [
             'form' => $form,
-            'error' => $authenticationUtils->getLastAuthenticationError(),
+            'error' => $authenticationUtils->getLastAuthenticationError()
         ]);
 
     }
