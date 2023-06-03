@@ -21,6 +21,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\PasswordCredentials;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\EntryPoint\AuthenticationEntryPointInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class LoginFormAuthenticator extends AbstractAuthenticator implements AuthenticationEntryPointInterface
 {
@@ -29,7 +30,8 @@ class LoginFormAuthenticator extends AbstractAuthenticator implements Authentica
         private readonly FormFactoryInterface  $form,
         private readonly UserRepository        $userRepository,
         private readonly RouterInterface       $router,
-        private readonly ParameterBagInterface $parameterBag
+        private readonly ParameterBagInterface $parameterBag,
+        private readonly ValidatorInterface    $validator,
     )
     {
     }
@@ -51,6 +53,14 @@ class LoginFormAuthenticator extends AbstractAuthenticator implements Authentica
         /** @var User $user */
         $user = $form->getData();
 
+        $request->getSession()->set(Security::LAST_USERNAME, $user->getEmail());
+
+        $errors = $this->validator->validate($user);
+
+        if (count($errors) > 0) {
+            throw new AuthenticationException();
+        }
+
         $userBadge = new UserBadge(
             $user->getEmail(),
             function ($userIdentifier) {
@@ -65,8 +75,6 @@ class LoginFormAuthenticator extends AbstractAuthenticator implements Authentica
         );
 
         $csrfToken = $request->get('login_user')['_token'];
-
-        $request->getSession()->set(Security::LAST_USERNAME, $user->getEmail());
 
         return new Passport(
             $userBadge,
