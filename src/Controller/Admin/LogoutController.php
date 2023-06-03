@@ -15,6 +15,9 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class LogoutController extends AbstractController
 {
 
+    /**
+     * @throws Exception
+     */
     #[Route('/logout',
         name: 'admin_logout',
         host: 'admin.%app.base_host%',
