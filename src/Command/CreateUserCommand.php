@@ -41,14 +41,15 @@ class CreateUserCommand extends Command
         $io = new SymfonyStyle($input, $output);
 
         $email = $input->getArgument('email');
-        $plaintextPassword = $input->getArgument('password');
+        $plainPassword = $input->getArgument('password');
 
         $user = new User($email);
         $user->setEmail($email);
+        $user->setPlainPassword($plainPassword);
 
         $hashedPassword = $this->userPasswordHasher->hashPassword(
             $user,
-            $plaintextPassword
+            $plainPassword
         );
 
         $user->setPassword($hashedPassword);
