@@ -20,6 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Equatab
 
     #[ORM\Column(length: 180, unique: true)]
     #[Assert\NotBlank(message: 'user.email.not_blank')]
+    #[Assert\Email(message: 'user.email.email')]
     private ?string $email = null;
 
     #[ORM\Column]

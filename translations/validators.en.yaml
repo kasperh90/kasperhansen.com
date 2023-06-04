@@ -1,2 +1,3 @@
+user.email.email: Please enter a valid email.
 user.email.not_blank: Please enter an email.
 user.plainPassword.not_blank: Please enter a password.

@@ -4,7 +4,6 @@ namespace App\Security;
 
 use App\Entity\User;
 use App\Form\LoginUserType;
-use App\Repository\UserRepository;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -14,7 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
-use Symfony\Component\Security\Core\Exception\UserNotFoundException;
 use Symfony\Component\Security\Http\Authenticator\AbstractAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
@@ -28,7 +26,6 @@ class LoginFormAuthenticator extends AbstractAuthenticator implements Authentica
 
     public function __construct(
         private readonly FormFactoryInterface  $form,
-        private readonly UserRepository        $userRepository,
         private readonly RouterInterface       $router,
         private readonly ParameterBagInterface $parameterBag,
         private readonly ValidatorInterface    $validator,
@@ -39,7 +36,7 @@ class LoginFormAuthenticator extends AbstractAuthenticator implements Authentica
     public function supports(Request $request): ?bool
     {
         return $request->getHost() === 'admin.' . $this->parameterBag->get('app.base_host')
-            && $request->getPathInfo() === '/login'
+            && $request->getPathInfo() === '/login/submit'
             && $request->getMethod() === 'POST';
     }
 
@@ -62,16 +59,7 @@ class LoginFormAuthenticator extends AbstractAuthenticator implements Authentica
         }
 
         $userBadge = new UserBadge(
-            $user->getEmail(),
-            function ($userIdentifier) {
-                if (!$user = $this->userRepository->findOneBy([
-                    'email' => $userIdentifier
-                ])) {
-                    throw new UserNotFoundException();
-                }
-
-                return $user;
-            }
+            $user->getEmail()
         );
 
         $csrfToken = $request->get('login_user')['_token'];

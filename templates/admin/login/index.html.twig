@@ -4,11 +4,9 @@
 
 {% block body %}
 
-    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
-
-    {% if error %}
-        {{ error.messageKey|trans(error.messageData, 'security') }}
-    {% endif %}
+    {{ render(controller(
+        'App\\Controller\\Admin\\LoginFormController::index'
+    )) }}
 
     {% if app.user %}
         You are logged in

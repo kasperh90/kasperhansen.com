@@ -22,7 +22,7 @@ class LogoutController extends AbstractController
         name: 'admin_logout',
         host: 'admin.%app.base_host%',
         methods: ['GET'])]
-    public function index(AuthenticationUtils $authenticationUtils): never
+    public function logout(AuthenticationUtils $authenticationUtils): never
     {
 
         throw new Exception('logout() should never be reached');
