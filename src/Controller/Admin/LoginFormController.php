@@ -15,11 +15,10 @@ class LoginFormController extends AbstractController
 
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
-
         $user = new User();
         $form = $this->createForm(LoginUserType::class, $user);
 
-        if($email = $authenticationUtils->getLastUsername()){
+        if ($email = $authenticationUtils->getLastUsername()) {
             $form->get('email')->setData($email);
         }
 
@@ -36,7 +35,8 @@ class LoginFormController extends AbstractController
         name: 'admin_login_submit',
         host: 'admin.%app.base_host%',
         methods: ['POST'])]
-    public function login (): never {
+    public function login_submit(): never
+    {
         throw new Exception('login() should never be reached');
     }
 

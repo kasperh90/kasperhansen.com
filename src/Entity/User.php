@@ -19,8 +19,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Equatab
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\NotBlank(message: 'user.email.not_blank')]
-    #[Assert\Email(message: 'user.email.email')]
+    #[Assert\NotBlank(message: 'user.validate.email.not_blank')]
+    #[Assert\Email(message: 'user.validate.email')]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -32,7 +32,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface, Equatab
     #[ORM\Column]
     private ?string $password = null;
 
-    #[Assert\NotBlank(message: 'user.plainPassword.not_blank')]
+    #[Assert\NotBlank(message: 'user.validate.plain_password.not_blank')]
     private ?string $plainPassword = null;
 
     public function getId(): ?int

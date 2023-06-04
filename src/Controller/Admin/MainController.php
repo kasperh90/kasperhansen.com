@@ -15,7 +15,8 @@ class MainController extends AbstractController
         name: 'admin_main',
         host: 'admin.%app.base_host%',
         methods: ['GET'])]
-    public function index () : Response {
+    public function index(): Response
+    {
 
         $response = new Response();
         $response->setStatusCode(Response::HTTP_OK);
