@@ -11,7 +11,10 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeController extends AbstractController
 {
 
-    #[Route(path: '/', name: 'home', host: '%app.base_host%', methods: ['GET'])]
+    #[Route('/',
+        name: 'www_home',
+        host: '%app.base_host%',
+        methods: ['GET'])]
     public function index () : Response {
 
         return $this->render('www/home/index.html.twig');

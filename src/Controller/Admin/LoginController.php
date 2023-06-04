@@ -8,21 +8,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class MainController extends AbstractController
+class LoginController extends AbstractController
 {
 
-    #[Route('/',
-        name: 'admin_main',
+    #[Route('/login',
+        name: 'admin_login',
         host: 'admin.%app.base_host%',
         methods: ['GET'])]
     public function index(): Response
     {
-
-        $response = new Response();
-        $response->setStatusCode(Response::HTTP_OK);
-
-        return $response;
-
+        return $this->render('admin/login/index.html.twig');
     }
 
 }

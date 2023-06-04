@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} | Login {% endblock %}
+
+{% block body %}
+
+    {{ render(controller(
+        'App\\Controller\\Admin\\LoginFormController::index'
+    )) }}
+
+    {% if app.user %}
+        You are logged in
+    {% endif %}
+
+{% endblock %}
