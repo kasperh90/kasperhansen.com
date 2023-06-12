@@ -1,0 +1,57 @@
+# Form widget
+{%- block form -%}
+    <form name="{{- name -}}" id="{{- id -}}" class="form"
+          method="{{- method -}}" action="{{- action -}}" novalidate>
+        {{- form_rest(form) -}}
+    </form>
+{%- endblock form -%}
+
+# Input widget
+{%- block form_widget_simple -%}
+    {%- if type is not defined or type is empty -%}
+        {%- set type = 'text' -%}
+    {%- endif -%}
+    {%- if full_name is defined and full_name is not empty -%}
+        {%- set name = full_name -%}
+    {%- endif -%}
+    {%- if name is not defined or name is empty -%}
+        {%- set name = '' -%}
+    {%- endif -%}
+    <input type="{{- type -}}" name="{{- name -}}" id="{{- id -}}"
+        {%- if type is defined and type is not same as('hidden') -%}
+            class="form-input"
+        {%- endif -%}
+        {%- if attr.placeholder is defined and attr.placeholder|trans is not empty -%}
+            placeholder="{{- attr.placeholder|trans -}}"
+        {%- endif -%}
+        {%- if value is defined and value is not empty -%}
+        value="{{- value -}}"
+        {%- endif -%}>
+{%- endblock form_widget_simple -%}
+
+# Label widget
+{%- block form_label -%}
+    <label class="form-label" for="{{- id -}}">
+        {{- label|trans -}}
+    </label>
+{%- endblock form_label -%}
+
+# Form row widget
+{%- block form_row -%}
+    <div class="form-row">
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
+    </div>
+{%- endblock form_row -%}
+
+# Button widget
+{%- block button_widget -%}
+    <button type="submit" class="btn btn-success">{{- label|trans -}}</button>
+{%- endblock button_widget -%}
+
+# Button row widget
+{%- block button_row -%}
+    <div class="form-row">
+        {{- form_widget(form) -}}
+    </div>
+{%- endblock button_row -%}

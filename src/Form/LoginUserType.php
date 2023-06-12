@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Component\Routing\RouterInterface;
 
 class LoginUserType extends AbstractType
 {
@@ -25,25 +24,34 @@ class LoginUserType extends AbstractType
     {
         $builder
             ->add('email', EmailType::class, [
-                'label' => 'user.login.email'
+                'label' => 'user.login.email.label',
+                'attr' => [
+                    'placeholder' => 'user.login.email.placeholder',
+                ]
             ])
             ->add('plainPassword', PasswordType::class, [
-                'label' => 'user.login.password'
+                'label' => 'user.login.password.label',
+                'attr' => [
+                    'placeholder' => 'user.login.password.placeholder',
+                ]
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'user.login.submit'
-            ])
-        ;
+                'label' => 'user.login.submit.label',
+                'attr' => [
+                    'placeholder' => 'user.login.placeholder',
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class ,
+            'data_class' => User::class,
             'action' => $this->urlGenerator->generate('admin_login_submit'),
+            'method' => 'post',
             'csrf_protection' => true,
             'csrf_field_name' => '_token',
-            'csrf_token_id'   => 'authenticate',
+            'csrf_token_id' => 'authenticate',
         ]);
     }
 }

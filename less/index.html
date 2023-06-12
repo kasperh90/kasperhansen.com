@@ -1,4 +1,4 @@
 <% htmlWebpackPlugin.files.css.forEach(function(file) { %>
 <link rel="preload" href="{{ preload(asset('<%= file %>', 'static' ), { as: 'style' }) }}" as="style">
-<link rel="stylesheet" href="<%= file %>">
+<link rel="stylesheet" href="{{ asset('<%= file %>') }}">
 <% }); %>

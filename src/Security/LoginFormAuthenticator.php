@@ -58,6 +58,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         $errors = $this->validator->validate($user);
 
         if (count($errors) > 0) {
+            // TODO: throw custom exception instead, fx: CustomAuthenticatorException?
             throw new AuthenticationException();
         }
 

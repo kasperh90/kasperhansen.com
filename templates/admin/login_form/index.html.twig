@@ -1,4 +1,4 @@
-{{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+{{ form(form) }}
 
 {% if error %}
     {{ error.messageKey|trans(error.messageData, 'security') }}
