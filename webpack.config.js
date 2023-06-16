@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
 
     return {
         entry: {
-            bundle: path.resolve(__dirname, 'less/index.js')
+            bundle: path.resolve(__dirname, 'index.js')
         },
         output: {
             path: path.resolve(__dirname, 'public/assets'),
