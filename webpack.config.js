@@ -62,7 +62,7 @@ module.exports = (env, argv) => {
         plugins: [
             new HtmlWebpackPlugin({
                 filename : '../templates/assets/bundle.html',
-                template: 'index.html',
+                template: 'less/index.html',
                 inject: false,
             }),
             new MiniCssExtractPlugin({
