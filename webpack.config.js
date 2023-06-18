@@ -9,7 +9,7 @@ module.exports = (env, argv) => {
 
     return {
         entry: {
-            bundle: path.resolve(__dirname, 'index.js')
+            bundle: path.resolve(__dirname, 'less/index.js')
         },
         output: {
             path: path.resolve(__dirname, 'public/assets'),
@@ -61,8 +61,8 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new HtmlWebpackPlugin({
-                filename : '../../templates/assets/bundle.html',
-                template: 'less/index.html',
+                filename : '../templates/assets/bundle.html',
+                template: 'index.html',
                 inject: false,
             }),
             new MiniCssExtractPlugin({
